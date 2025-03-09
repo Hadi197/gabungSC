@@ -1,0 +1,24 @@
+name: Run Python Script Every 3 Hours
+
+on:
+  schedule:
+    - cron: '0 */3 * * *'  # Menjalankan setiap 3 jam
+  workflow_dispatch:  # Opsi untuk menjalankan manual
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'  # Sesuaikan versi Python
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt  # Jika ada dependencies
+
+      - name: Run Script
+        run: python gabung.py  # Ganti dengan file Python yang ingin dieksekusi
