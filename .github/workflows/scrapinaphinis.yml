@@ -2,8 +2,8 @@ name: Scrape Inaportnet Data
 
 on:
   schedule:
-    - cron: '0 0 * * *'
-  workflow_dispatch:
+    - cron: '0 */3 * * *'  # Menjalankan setiap 3 jam (00:00, 03:00, 06:00, dst.)
+  workflow_dispatch:  # Memungkinkan menjalankan secara manual
 
 jobs:
   scrape:
@@ -14,14 +14,14 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: '3.x'  # Menggunakan versi Python terbaru
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pyppeteer pandas
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Run inaport.py
-        run: python /Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/inaport.py
+      - name: Run Scraping Script
+        run: python gabung.py  # Jalankan skrip scraping
