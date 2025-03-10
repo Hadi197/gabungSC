@@ -23,5 +23,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyppeteer pandas
 
-      - name: Run inaport.py
-        run: python /Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/inaport.py
+      - name: Run gabung.py
+        run: python /Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/gabung.py
