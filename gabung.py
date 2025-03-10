@@ -20,6 +20,9 @@ monitoring_data_df = pd.read_csv(monitoring_data_path)
 print("Columns in hasil_scraping_df:", hasil_scraping_df.columns)
 print("Columns in monitoring_data_df:", monitoring_data_df.columns)
 
+# Filter rows where 'gt' is greater than or equal to 500
+filtered_hasil_scraping_df = hasil_scraping_df[hasil_scraping_df['gt'] >= 500]
+
 # Select only the specified columns that exist in both DataFrames
 columns_to_select_hasil_scraping = [
     'no_pkk_inaportnet', 'no_pkk', 'arrive_date', 'vessel_name', 
@@ -30,7 +33,7 @@ columns_to_select_monitoring_data = [
 ]
 
 # Ensure the columns exist in the DataFrames
-selected_hasil_scraping = hasil_scraping_df[columns_to_select_hasil_scraping]
+selected_hasil_scraping = filtered_hasil_scraping_df[columns_to_select_hasil_scraping]
 selected_monitoring_data = monitoring_data_df[columns_to_select_monitoring_data]
 
 # Print the selected data to debug
