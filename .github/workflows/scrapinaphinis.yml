@@ -1,9 +1,9 @@
-name: Scrape Inaportnet Data
+name: Scraping Setiap 3 Jam
 
 on:
   schedule:
-    - cron: '0 */3 * * *'  # Setiap 3 jam
-  workflow_dispatch:
+    - cron: '0 */3 * * *'  # Menjalankan setiap 3 jam
+  workflow_dispatch:  # Bisa dijalankan manual
 
 jobs:
   scrape:
@@ -12,6 +12,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Debug - Print Working Directory
+        run: pwd  # Menampilkan direktori kerja
+
+      - name: Debug - List Files Sebelum Instalasi
+        run: ls -R  # Menampilkan semua file dan folder sebelum proses instalasi
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -23,8 +29,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Debug - List Files
-        run: ls -R  # Menampilkan struktur folder
+      - name: Debug - List Files Setelah Instalasi
+        run: ls -R  # Menampilkan semua file dan folder setelah proses instalasi
 
-      - name: Run Scraping Script
-        run: python gabung.py  # Pastikan file ini ada di root repository
+      - name: Jalankan Scraping Script
+        run: python scrape.py  # Menjalankan scraping
+
+      - name: Debug - Cek hasil_scraping.csv
+        run: ls -lah hasil_scraping.csv || echo "File tidak ditemukan"
+
+      - name: Jalankan Inaport Script
+        run: python inaport.py  # Menjalankan inaport.py jika ada
+
+      - name: Gabungkan Data
+        run: python gabung.py  # Menggabungkan hasil scraping
+
+      - name: Debug - List Files Setelah Gabung
+        run: ls -R  # Menampilkan semua file setelah penggabungan
