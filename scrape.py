@@ -1,6 +1,10 @@
 import json
 import asyncio
 from pyppeteer import launch
+from pyppeteer.chromium_downloader import download_chromium, REVISION
+
+# Specify a different Chromium revision
+REVISION = '818858'  # Example revision, you can change this to a known working revision
 import csv
 import time
 
@@ -45,7 +49,7 @@ async def scrape_data():
         response = await page.goto(url_template.format(page=page_number), {"waitUntil": "networkidle0"})
         content = await page.evaluate("document.body.innerText")
         data = json.loads(content)
-        filtered_data = [item for item in data['data']['dataRec'] if item.get('name_process_code') not in ['Preinvoice', 'NOTA NORMAL']]
+        filtered_data = [item for item in data['data']['dataRec'] if item.get('name_process_code') not in ['Preinvoice', 'NOTA NORMAL'] and item.get('process_code') != '0']
         all_records.extend(filtered_data)
         time.sleep(1)  # Add delay to prevent rate limiting
 

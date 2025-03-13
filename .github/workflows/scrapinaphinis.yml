@@ -12,12 +12,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Debug - Print Working Directory
-        run: pwd  # Menampilkan direktori kerja
-
-      - name: Debug - List Files Sebelum Instalasi
-        run: ls -R  # Menampilkan semua file dan folder sebelum proses instalasi
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -29,20 +26,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Debug - List Files Setelah Instalasi
-        run: ls -R  # Menampilkan semua file dan folder setelah proses instalasi
+      - name: Run Scripts
+        run: |
+          python scrape.py
+          python inaport.py
+          python gabung.py
 
-      - name: Jalankan Scraping Script
-        run: python scrape.py  # Menjalankan scraping
-
-      - name: Debug - Cek hasil_scraping.csv
-        run: ls -lah hasil_scraping.csv || echo "File tidak ditemukan"
-
-      - name: Jalankan Inaport Script
-        run: python inaport.py  # Menjalankan inaport.py jika ada
-
-      - name: Gabungkan Data
-        run: python gabung.py  # Menggabungkan hasil scraping
-
-      - name: Debug - List Files Setelah Gabung
-        run: ls -R  # Menampilkan semua file setelah penggabungan
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Update data $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+          git push
