@@ -2,6 +2,8 @@ import json
 import asyncio
 from pyppeteer import launch
 from pyppeteer.chromium_downloader import download_chromium, REVISION
+import pandas as pd
+from datetime import datetime
 
 # Specify a different Chromium revision
 REVISION = '818858'  # Example revision, you can change this to a known working revision
@@ -53,14 +55,19 @@ async def scrape_data():
         all_records.extend(filtered_data)
         time.sleep(1)  # Add delay to prevent rate limiting
 
-    # Save to CSV
-    csv_filename = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/hasil_scraping.csv'
-    with open(csv_filename, mode='w', newline='', encoding='utf-8') as file:
-        writer = csv.writer(file)
-        writer.writerow(all_records[0].keys())  # Write header
-        for record in all_records:
-            writer.writerow(record.values())
-    print(f"✅ Data berhasil disimpan dalam file {csv_filename}")
+    # Setelah mendapatkan data lengkap (setelah loop scraping)
+    df = pd.DataFrame(all_records)
+
+    # Remove duplicates based on no_pkk_inaportnet, keep first occurrence
+    df = df.drop_duplicates(subset=['no_pkk_inaportnet'], keep='first')
+
+    # Simpan ke CSV
+    output_path = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/hasil_scraping.csv'
+    df.to_csv(output_path, index=False)
+
+    print(f"✅ Data berhasil disimpan dalam file {output_path}")
+    print(f"Total data: {len(df)}")
+    print(f"Last updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
     await browser.close()
 
