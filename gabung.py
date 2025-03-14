@@ -1,6 +1,6 @@
 import pandas as pd
+import subprocess
 
-<<<<<<< HEAD
 # Execute inaport.py
 subprocess.run(["python", "/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/inaport.py"])
 
@@ -12,13 +12,6 @@ hasil_scraping_path = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmda
 inaport_all_path = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/inaport_all.csv'
 output_path = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/gabung.csv'
 
-=======
-# File paths
-hasil_scraping_path = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/hasil_scraping.csv'
-inaport_all_path = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/inaport_all.csv'
-output_path = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/gabung.csv'
-
->>>>>>> f4612070a673e1672be167494951989d5c389901
 # Load CSV files
 hasil_scraping_df = pd.read_csv(hasil_scraping_path)
 inaport_all_df = pd.read_csv(inaport_all_path)
