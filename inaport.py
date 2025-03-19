@@ -5,7 +5,7 @@ import datetime
 from pyppeteer import launch
 
 # Konfigurasi parameter scraping
-PORTS = ["IDGRE", "IDSUB"]
+PORTS = ["IDGRE", "IDSUB","IDBDJ"]
 TYPES = ["ln", "dn"]
 START_YEAR = 2024
 

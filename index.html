@@ -132,33 +132,6 @@
                 </div>
             </div>
 
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Vessels</h5>
-                            <p class="card-text clickable" id="totalVessels">0</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Vessels (IDSUB)</h5>
-                            <p class="card-text clickable" id="totalVesselsIDSUB">0</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Vessels (IDGRE)</h5>
-                            <p class="card-text clickable" id="totalVesselsIDGRE">0</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="container mt-4 classification-container">
                 <h3>GT Classification</h3>
                 <div class="row">
@@ -213,49 +186,12 @@
                 </div>
             </div>
 
-            <div class="container mt-4 classification-container">
-                <h3>LOA Classification</h3>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">LOA 0 - 70</h5>
-                                <p class="card-text clickable" id="loa0to70">0</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">LOA 70 - 150</h5>
-                                <p class="card-text clickable" id="loa70to150">0</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">LOA 151 - 250</h5>
-                                <p class="card-text clickable" id="loa151to250">0</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">LOA > 250</h5>
-                                <p class="card-text clickable" id="loaAbove250">0</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="table-responsive mt-4 classification-container">
                 <h3>Vessel Classification</h3>
                 <table id="dataTable" class="table table-striped table-bordered">
                     <thead>
                         <tr>
+                            <th>Select</th>
                             <th>No. PKK Inaportnet</th>
                             <th>No. PKK</th>
                             <th>Arrive Date</th>
@@ -281,6 +217,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <script>
         $(document).ready(function() {
             // Load CSV data
@@ -305,12 +242,6 @@
                         gt12001to15000: 0,
                         gt15001andAbove: 0
                     };
-                    let loaClassification = {
-                        loa0to70: 0,
-                        loa70to150: 0,
-                        loa151to250: 0,
-                        loaAbove250: 0
-                    };
                     let companyNameCounts = {};
                     let periodeSPBCounts = {};
 
@@ -332,7 +263,8 @@
                                 }
                             }
                             cells.push(currentCell);
-                            tableData.push(cells);
+
+                            tableData.push(['', ...cells]); // Add an empty cell for the checkbox
 
                             // Update totals and counts
                             totalVessels++;
@@ -353,16 +285,6 @@
                                 gtClassification.gt12001to15000++;
                             } else {
                                 gtClassification.gt15001andAbove++;
-                            }
-
-                            if (loa <= 70) {
-                                loaClassification.loa0to70++;
-                            } else if (loa <= 150) {
-                                loaClassification.loa70to150++;
-                            } else if (loa <= 250) {
-                                loaClassification.loa151to250++;
-                            } else {
-                                loaClassification.loaAbove250++;
                             }
 
                             const no_pkk_inaportnet = cells[0];
@@ -390,28 +312,28 @@
                     }
 
                     // Update cards
-                    $('#totalVessels').text(totalVessels);
-                    $('#totalVesselsIDSUB').text(totalVesselsIDSUB);
-                    $('#totalVesselsIDGRE').text(totalVesselsIDGRE);
                     $('#gt0to500').text(gtClassification.gt0to500);
                     $('#gt501to3000').text(gtClassification.gt501to3000);
                     $('#gt3001to6000').text(gtClassification.gt3001to6000);
                     $('#gt6001to12000').text(gtClassification.gt6001to12000);
                     $('#gt12001to15000').text(gtClassification.gt12001to15000);
                     $('#gt15001andAbove').text(gtClassification.gt15001andAbove);
-                    $('#loa0to70').text(loaClassification.loa0to70);
-                    $('#loa70to150').text(loaClassification.loa70to150);
-                    $('#loa151to250').text(loaClassification.loa151to250);
-                    $('#loaAbove250').text(loaClassification.loaAbove250);
 
                     // Initialize DataTable
                     const dataTable = $('#dataTable').DataTable({
                         data: tableData,
                         pageLength: 25,
-                        order: [[2, 'desc']],
+                        order: [[3, 'desc']],
                         responsive: true,
                         autoWidth: true,
                         columns: [
+                            { 
+                                title: 'Select',
+                                render: function() {
+                                    return '<input type="checkbox" class="row-select">';
+                                },
+                                orderable: false
+                            },
                             { title: headers[0] },
                             { title: headers[1] },
                             { title: headers[2] },
@@ -457,17 +379,10 @@
                             gt12001to15000: 0,
                             gt15001andAbove: 0
                         };
-                        let loaClassification = {
-                            loa0to70: 0,
-                            loa70to150: 0,
-                            loa151to250: 0,
-                            loaAbove250: 0
-                        };
 
                         filteredData.forEach(cells => {
                             totalVessels++;
-                            const gt = parseFloat(cells[4]);
-                            const loa = parseFloat(cells[5]);
+                            const gt = parseFloat(cells[5]);
 
                             if (gt <= 500) {
                                 gtClassification.gt0to500++;
@@ -483,17 +398,7 @@
                                 gtClassification.gt15001andAbove++;
                             }
 
-                            if (loa <= 70) {
-                                loaClassification.loa0to70++;
-                            } else if (loa <= 150) {
-                                loaClassification.loa70to150++;
-                            } else if (loa <= 250) {
-                                loaClassification.loa151to250++;
-                            } else {
-                                loaClassification.loaAbove250++;
-                            }
-
-                            const no_pkk_inaportnet = cells[0];
+                            const no_pkk_inaportnet = cells[1];
                             if (no_pkk_inaportnet.includes("IDSUB")) {
                                 totalVesselsIDSUB++;
                             } else if (no_pkk_inaportnet.includes("IDGRE")) {
@@ -502,19 +407,12 @@
                         });
 
                         // Update cards
-                        $('#totalVessels').text(totalVessels);
-                        $('#totalVesselsIDSUB').text(totalVesselsIDSUB);
-                        $('#totalVesselsIDGRE').text(totalVesselsIDGRE);
                         $('#gt0to500').text(gtClassification.gt0to500);
                         $('#gt501to3000').text(gtClassification.gt501to3000);
                         $('#gt3001to6000').text(gtClassification.gt3001to6000);
                         $('#gt6001to12000').text(gtClassification.gt6001to12000);
                         $('#gt12001to15000').text(gtClassification.gt12001to15000);
                         $('#gt15001andAbove').text(gtClassification.gt15001andAbove);
-                        $('#loa0to70').text(loaClassification.loa0to70);
-                        $('#loa70to150').text(loaClassification.loa70to150);
-                        $('#loa151to250').text(loaClassification.loa151to250);
-                        $('#loaAbove250').text(loaClassification.loaAbove250);
 
                         // Update table
                         const dataTable = $('#dataTable').DataTable();
@@ -524,24 +422,17 @@
                     }
 
                     function filterDataByCompanyName(companyName) {
-                        return tableData.filter(cells => cells[6].replace(/"/g, '') === companyName);
+                        return tableData.filter(cells => cells[7].replace(/"/g, '') === companyName);
                     }
 
                     function filterDataByPeriodeSPB(periodeSPB) {
-                        return tableData.filter(cells => cells[11].substring(0, 7) === periodeSPB);
+                        return tableData.filter(cells => cells[12].substring(0, 7) === periodeSPB);
                     }
 
                     function filterDataByGTRange(minGT, maxGT) {
                         return tableData.filter(cells => {
-                            const gt = parseFloat(cells[4]);
+                            const gt = parseFloat(cells[5]);
                             return gt >= minGT && gt <= maxGT;
-                        });
-                    }
-
-                    function filterDataByLOARange(minLOA, maxLOA) {
-                        return tableData.filter(cells => {
-                            const loa = parseFloat(cells[5]);
-                            return loa >= minLOA && loa <= maxLOA;
                         });
                     }
 
@@ -550,26 +441,14 @@
                     }
 
                     function filterDataByTotalVesselsIDSUB() {
-                        return tableData.filter(cells => cells[0].includes("IDSUB"));
+                        return tableData.filter(cells => cells[1].includes("IDSUB"));
                     }
 
                     function filterDataByTotalVesselsIDGRE() {
-                        return tableData.filter(cells => cells[0].includes("IDGRE"));
+                        return tableData.filter(cells => cells[1].includes("IDGRE"));
                     }
 
                     // Add click event listeners
-                    $('#totalVessels').addClass('clickable').click(function() {
-                        updateClassifications(filterDataByTotalVessels());
-                    });
-
-                    $('#totalVesselsIDSUB').addClass('clickable').click(function() {
-                        updateClassifications(filterDataByTotalVesselsIDSUB());
-                    });
-
-                    $('#totalVesselsIDGRE').addClass('clickable').click(function() {
-                        updateClassifications(filterDataByTotalVesselsIDGRE());
-                    });
-
                     $('#gt0to500').addClass('clickable').click(function() {
                         updateClassifications(filterDataByGTRange(0, 500));
                     });
@@ -594,20 +473,19 @@
                         updateClassifications(filterDataByGTRange(15001, Infinity));
                     });
 
-                    $('#loa0to70').addClass('clickable').click(function() {
-                        updateClassifications(filterDataByLOARange(0, 70));
-                    });
-
-                    $('#loa70to150').addClass('clickable').click(function() {
-                        updateClassifications(filterDataByLOARange(70, 150));
-                    });
-
-                    $('#loa151to250').addClass('clickable').click(function() {
-                        updateClassifications(filterDataByLOARange(151, 250));
-                    });
-
-                    $('#loaAbove250').addClass('clickable').click(function() {
-                        updateClassifications(filterDataByLOARange(251, Infinity));
+                    // Handle row selection
+                    $('#dataTable tbody').on('change', '.row-select', function() {
+                        const row = $(this).closest('tr');
+                        const vesselName = row.find('td:eq(4)').text();
+                        const no_pkk_inaportnet = row.find('td:eq(1)').text();
+                        if (this.checked) {
+                            const confirmed = confirm(`Apakah ${vesselName} akan di hapus..?`);
+                            if (confirmed) {
+                                dataTable.row(row).remove().draw();
+                            } else {
+                                this.checked = false;
+                            }
+                        }
                     });
 
                     // Create charts
@@ -626,30 +504,8 @@
                             datasets: [{
                                 label: 'Company Name Count',
                                 data: topCompanies.map(entry => entry[1]),
-                                backgroundColor: [
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(255, 206, 86, 0.2)',
-                                    'rgba(75, 192, 192, 0.2)',
-                                    'rgba(153, 102, 255, 0.2)',
-                                    'rgba(255, 159, 64, 0.2)',
-                                    'rgba(199, 199, 199, 0.2)',
-                                    'rgba(83, 102, 255, 0.2)',
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)'
-                                ],
-                                borderColor: [
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(255, 206, 86, 1)',
-                                    'rgba(75, 192, 192, 1)',
-                                    'rgba(153, 102, 255, 1)',
-                                    'rgba(255, 159, 64, 1)',
-                                    'rgba(199, 199, 199, 1)',
-                                    'rgba(83, 102, 255, 1)',
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(54, 162, 235, 1)'
-                                ],
+                                backgroundColor: topCompanies.map(entry => entry[1] >= 5 ? 'rgba(255, 0, 0, 0.2)' : 'rgba(54, 162, 235, 0.2)'),
+                                borderColor: topCompanies.map(entry => entry[1] >= 5 ? 'rgba(255, 0, 0, 1)' : 'rgba(54, 162, 235, 1)'),
                                 borderWidth: 1
                             }]
                         },
@@ -671,6 +527,14 @@
                                             return `${companyName}: ${count}`;
                                         }
                                     }
+                                },
+                                datalabels: {
+                                    anchor: 'end',
+                                    align: 'end',
+                                    formatter: function(value) {
+                                        return value;
+                                    },
+                                    color: 'black' // Set data label color
                                 }
                             },
                             scales: {
@@ -689,7 +553,8 @@
                                     updateClassifications(filteredData);
                                 }
                             }
-                        }
+                        },
+                        plugins: [ChartDataLabels]
                     });
 
                     const sortedPeriodeSPBCounts = Object.entries(periodeSPBCounts).sort((a, b) => new Date(a[0]) - new Date(b[0]));
@@ -701,8 +566,8 @@
                             datasets: [{
                                 label: 'Periode SPB Count',
                                 data: sortedPeriodeSPBCounts.map(entry => entry[1]),
-                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                                borderColor: 'rgba(54, 162, 235, 1)',
+                                backgroundColor: sortedPeriodeSPBCounts.map(entry => entry[1] >= 5 ? 'rgba(255, 0, 0, 0.2)' : 'rgba(54, 162, 235, 0.2)'),
+                                borderColor: sortedPeriodeSPBCounts.map(entry => entry[1] >= 5 ? 'rgba(255, 0, 0, 1)' : 'rgba(54, 162, 235, 1)'),
                                 borderWidth: 1
                             }]
                         },
@@ -715,6 +580,14 @@
                                 title: {
                                     display: true,
                                     text: 'Periode SPB Distribution'
+                                },
+                                datalabels: {
+                                    anchor: 'end',
+                                    align: 'end',
+                                    formatter: function(value) {
+                                        return value;
+                                    },
+                                    color: 'black' // Set data label color
                                 }
                             },
                             scales: {
@@ -733,7 +606,8 @@
                                     updateClassifications(filteredData);
                                 }
                             }
-                        }
+                        },
+                        plugins: [ChartDataLabels]
                     });
                 },
                 error: function(xhr, status, error) {
