@@ -1,145 +1,153 @@
 import json
-import asyncio
-from pyppeteer import launch
-from pyppeteer.chromium_downloader import download_chromium, REVISION
-
-# Specify a different Chromium revision
-REVISION = '818858'  # Example revision, you can change this to a known working revision
+import requests
 import csv
 import time
+import brotli  # Add this import
 
-async def scrape_data():
-    url_template = "https://phinnisi.pelindo.co.id:9021/api/executing/monitoring-operational?page={page}&record=10000&data=&subBranch=MTc=,ODE=,MTY=,MjU=,NjE=,MTAx,NTc=,Mjc=,Mjk=,NjA="
-    access_token = "eyJhbGciOiJIUzI1NiJ9.VTJGc2RHVmtYMStRVUwyQ0pJTGhETTFyTk9LN1J4RnplMnBYd0tDMnY4VWU3d3FqemhJeDV4dWFMN1BxTDBYcHdxNDhYU1NWTHdxMTlqZFRvemlTd1dpdGIyZHdaMWZuR2tVb1QrRzA0NmhKOG1CVTJoUVI4N1BMdnNYRjYyZUFESmtxVjM1a2s0Ny81ZUtkYnFUandpZ3pxcmE4U1hPaWlOU21VTzJiYnR0VXFYOEVpUVRhM1g1bHg2Y0Zackk4VHA0aURNRmxrZVliUDF3SmxKNEdwSGFKRml0dFJhS2RscjhHdGR1Wlg1dXZrNXd6TDlPdTRFQ0doY3pVMVE5VHV3YURNT2Z1bGhaM3dFbE5WL1VzWHcwZ1QrOUNQdTVhQzNVRGxHWXErbERwRnkwa2VWMUUxLzlsQUxLSmVwcXNJNXhTak1BWjAvZENJMys5QjVBeFJraktuZlFRZnJtRVdaSVN5cFBZVW1rQ1JCMVBMYWw0MURzTG0wV0YwaFRIem9QaUtsZ3dySXRVRjR6UjNDZ1hTbm10OG5TM2JCZndQa1FOSjQvOXBvdTMwNzZZTFFlWVhoU0tTZEFnMGVwaW14dlJrV085VTNmV09Pb1pqaWdNdjh3U2FvV2tYUTRYUENxZ1ZpUGNVb0VKTHBYQVl6dTlOUkZhNGFuMmVoRkl0MHc0RzFsRGU3YVJiNUhJL1Z2MXZzSjI4S2RWNXRXQVJCNUpoQlAxVUFuTWFHcTM0N1pWQnIyZy9vOUJ1VUxLazNSTWVORXZSOHludU90UUhpWklmem5NQkxIMHVnTlFCNFZENzBjVklrS2FZZDNCZ2plNUZSeE1FSW9MdmxhTFZ0QmVoNDdLNnZJTEhPQzErNkVDS1BCVWZtQU5tbU93S1FtYm9pQi9vbkRIOTRrUEl4V2RiN3dhelBTT3RDWFlIQ0FzZlFkdG41c0pDYTVYUTlVUnNmcDlpUXZacjFFU0Jjc0IxanBnakJ3b0hXa1JBVUkwQ1oyd2dFL0EzWldCOXZUT3d1ekx5SUJrdWRHU2ZjTmVrK0l2d1ZleDlCeXhQUnJnWmVFVXlicnAxTXp6RXVodnJIZ0Y5aTVSbDlpNktSTTh4aitkOW1UTkdSWTdsZGJZQWtXVVZNRm9rd3RKRnZGN2RxZkU1eE95OWY2SEQvYzY5REV3TlQxWjQwTTAzUGRBc3RYZjk5dWdlNEZlWGNiUTFrQU5zQ2FhY3Jld2ZqNkZNODRiQldyMExPNTlrcUc2eFpZVmtWdnNmQTk1a3h6cjlrd09CM2NpYWllNVVvRVFiZWEraW5ibWV5UVlEVTc2MW5YdFUvQmduM3pWQnQxNm5tTll5V1kwdkxDZDd4bjNHREdhNXBINk1Jb001Mk1TT2dVMGt5bjlUNHBYTmN6LzFwbWJtcE82ZDFZMUI3NWV5NVQxTGNzV0pxdUVLMTVCVHFZZ2YxRDVodEtXdE10aFRMZGlmaUk3OXl4RlRweTk1WnRSVGdzM3hrbEl6cmNQQkIxY0hhZkovclNyamd4Nm9KQ3BUMVJjN2xINmgvclBEVHVoT3A0WU5pYzFZbEVUUGVjTUpiMTg3ZnpwS0tNblVRWkZTb0JMQVNSTlZ5RlQ2dlBGZVpkVUZoYkJWdXNIalBmYVVpdlNYcjFpM1RUL3BiQ2htNVl0Q3NzRm80ZHJDK3dRMjBGQzV6Q2NoZXJiR05QMUdySG1peEVTeEpWUUtuZHRXd20vajc5aVN0SjZ3N3QxK2lBM1NzQkp5YnlUNU9DUWpQcWkrelk5REhZdmhWU0duelY4bmhkOUZrbGNqOWM2T0kzQkxMenNONmlzRjNHOWNUWC8xMGpnV2ZNVEl0Qk03TFJkL0FYSXJTcmNGUlpVemZRWkxHMXJwVThWTG9Vb0JGTWJoK3lYTFVUZ0ZMNkhWbGt2WFg0WUdyd3k4MDQ3Q2FBdjlIM1RqcmY3RmgyV2ppV0FiY0VoZWZFOFhaMGJrQXRTaHozbVVhTXA3VXlpT2t4TElNK0wzdmZQODJwclg4ZWZPQmxNRWlyWWRxcm1OaWdTZnNjamk3QnFVRXBuL0k4NnZVdEwrR0ROUWNSV3MyVEhVQVVoajRtcE45eTQySXIvcVRoWkhFcXRtTG9PV2RLeEJkVXA0eGVHdXppTVRRY0tib3ZWTWsxajlBM3RsRzVTdEE4cUFFN0tZWDdDVkJGdjdWM095NTR4RTZrdzF1TVA1KzN5R2l2OUNJWmY4VVR2UU5GNzZXZUc3MTJvMERNMy9FZ1creG9RazhBNFRLenJmTyt6YjdCUlYxOGtIaW5TekdaeXIvWEFEMHZ3OVdUWHFVWkJsaHk3Yk1uYkRaUWwzSWtqNGFiUkZDR2RzcG5zZlFkOS9xSmxwaTNpODB0ZVJOcXJnbDVPdTdKNS8xTHFqbk5PWEo1QjZLZGFrWDFNZGZHNm9aUFVjSHo3Z3ZhTmlxMy9KSFRuYXd3WW4wTVowNlRLZC9qS1BCc3UwN1VhcENrRC9SYys1eU83MmIrdklObS9xSUorM1RIVms0R0ZyTkh0VUxMVkpFaUFTdk9GdWFlS2Nqci9rdTNWaGdnZmkrWFdLR0IyMm1YSDhtdXhleCtTSU0rRUt4VWROdEVCTytkRmVWZ1BCNWNrbFBZMy9EYUFuc2kwa2ttSTdGcndpNTBYRkhmczUxbERNejJVTENGVzl4L0ViNHZoYWEvQjRUUWJrR24wcmFWNWZ1VmpZMDBabUpjSWNqY2RYVFBYSURBVHhmblpRS1pOa0ZrK2RwaHhrbGkycG9iZGFHYlpCNWV3dmxnVFpOSmhDU2dBSy92OFFoQmtxcE1Ld2pRT29YRWZNdzJNSGZpa09NTk5pdTNjNFd0WG5qbHRQbzZoZlFBa2hpekJ4clR5TnNsQjBaT1pocTFWREN6MEFtRzdGV1VVUHlKcktvZVBZVmhVdmNraU1kWUFLTXo1U0xjYXNNQXJmLy93OER4RlFlL0lLbDQyYkhLcTRLdnJHK2RnWVM0UXFzL1VKU1ZTbGU3QUZTWjVJZVdJclhHanVIMFhVT05EOUo5RVgycENSUFVvSnBTREFEUmtGbUlpWUJxNG1QMHAxZHdHcHhuNVgwUnUyQjRRTXRuZUI2L0JNeS96ZGVBd2FUT0FXaUNqblNIVGhjbTY0SFk2a0lsSjdvTmR1NU9tcE5YOTFIN0gwWkd3ZitIV1hsMm9RQmFLbkgxM2RwTGJjWEJCaFVJS2F1NHV1VC9EeS82TlhzU05JcTQxSUxwZXQrc1dMSlg3UGFHaGVEZXA3Ym1xUW9UWGx0QmZMb2laTzhBWkE2RFpxaEUwWEpOSHF1S3NVbnpmZklnQlA1SnROalNCMmxJRURiR2htdm5qTDVvM3ZIWFUzdGlDZlJFbjBBMFEyQnA1azRYREJHaUpLN093ZjdaVjdhRndaSzBIYjFZcGVoR3lSQlhrN0JOQXhOYnlxMUNlV25KU3ZmWkYxeU5qTFR0d1EvMno0TjA2NC84d1JwSXlsVE1iNFRnVGw5dmxVYTBjcWdBPQ.MKwyU5d8vDVCZyqyWQgrE18OrEXFjiaME9iV7M1ENS8"
+def fetch_page(base_url, headers, params, retries=5):
+    for i in range(retries):
+        try:
+            response = requests.get(base_url, headers=headers, params=params)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Attempt {i + 1} failed: {e}")
+            if i < retries - 1:
+                sleep_time = 2 ** i
+                print(f"Retrying in {sleep_time} seconds...")
+                time.sleep(sleep_time)
+            else:
+                print("Max retries reached. Moving to next page.")
+                return None
 
-    browser = await launch(headless=True)
-    page = await browser.newPage()
+def scrape_data():
+    base_url = "https://phinnisi.pelindo.co.id:9017/api/executing/monitoring-operational"
     
-    await page.setExtraHTTPHeaders({
+    # Full access token in a single line
+    access_token = "eyJhbGciOiJIUzI1NiJ9.VTJGc2RHVmtYMStPeHptaHhOMlhmQzFiRFVVYmJwMTVMMithZm4wenZsUjBIRnlRcFV0RVVNZFZrRVIrclBUaVE0Y1hpd1lzV0wvT3ZwMnRRcFhrVGFhdDlTRW5JQmlRMWN0L1dneERuMTFoMzRVMUlNOVhKV2lxcFUraWtsbkUvSTZjQUR4dXBPMXY5SmNjQVJkWDRzL24reU9CaU5GaWJwSG5qZHJ2N3NTN2pLUVRKZnhqMXp4Vnh4WVVycTRKanBUQUJpYUNyOURyYi9uVHNFSUhNZnV0dnFQNHpCVVFCb0JIRmdzMlJUQUlUOFVpZXZGSEZqV0dQdkdGTkFTWXYvR3hGRDJtWk8vMEVhU1A0MzNrYmFrS2h6MExNcVJVUzlPQmZjYU5RWWVmNVY0VWN1WHZwdzhJZkxSYWw5bXM4QW1XZUF0L2x4eUprRU1kUUgyVExBTmoybncvOWw1QklzRDhFSjVwQUsyMTUweS80SXFiR3lPQUQzejJ5K2tlMG1YSjVRMlRpTUlWY3NNdXFOOTY4QT09.5bTNpwkZ6kV7QHZez4DNU0XopLcT2LO8-Z43jeNQoEQ"
+
+    headers = {
         "accept": "application/json, text/plain, */*",
         "accept-encoding": "gzip, deflate, br, zstd",
         "accept-language": "en-US,en;q=0.9",
-        "access-token": access_token
-    })
+        "access-token": access_token,
+        "connection": "keep-alive",
+        "host": "phinnisi.pelindo.co.id:9017",
+        "origin": "https://phinnisi.pelindo.co.id",
+        "referer": "https://phinnisi.pelindo.co.id/",
+        "sec-ch-ua": "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"Opera\";v=\"117\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-site",
+        "sub-branch": "MTc=,MTY=,MjU=,ODE=,NTc=,MTAx,NjE=,NzM=,NzQ=,ODM=,NzU=,NzI=,Mjc=,Mjk=,NjA=",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 OPR/117.0.0.0"
+    }
 
-    # Get the first page to determine the total number of pages
-    response = await page.goto(url_template.format(page=1), {"waitUntil": "networkidle0"})
-    
-    if response is None:
-        print("❌ Tidak mendapatkan respons dari server.")
-        await browser.close()
-        return
-
-    content = await page.evaluate("document.body.innerText")
-
-    if not content:
-        print("❌ Respons kosong dari server.")
-        await browser.close()
-        return
-    
-    data = json.loads(content)
-    total_pages = data['data']['totalPage']
-    print(f"Total pages: {total_pages}")
-
-    all_records = []
-
-    # Simpan hasil scraping awal untuk debugging
-    with open("/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/debug_data.json", "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4, ensure_ascii=False)
-
-    # Simpan hasil response API untuk debugging
-    with open("/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/debug_response.json", "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4, ensure_ascii=False)
-
-    print("✅ Data mentah dari API telah disimpan dalam debug_response.json")
-
-    # Lihat cabang apa saja yang tersedia dalam data
-    branches = {item.get("name_branch") for item in data["data"]["dataRec"]}
-    print("Cabang tersedia:", branches)
-
-    # Loop through all pages
-    for page_number in range(1, total_pages + 1):
-        print(f"Fetching page {page_number}...")
-        response = await page.goto(url_template.format(page=page_number), {"waitUntil": "networkidle0"})
-        content = await page.evaluate("document.body.innerText")
-        data = json.loads(content)
-        filtered_data = [
-            item for item in data['data']['dataRec']
-            if item.get('name_process_code') not in ['Preinvoice', 'NOTA NORMAL']
-            and item.get('process_code') != '0'
-            and item.get('name_branch') in ['BANJARMASIN', 'TANJUNG PERAK']
-        ]
-        all_records.extend(filtered_data)
-        time.sleep(1)  # Add delay to prevent rate limiting
-
-    # Save to CSV
-    csv_filename = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/hasil_scraping.csv'
-    with open(csv_filename, mode='w', newline='', encoding='utf-8') as file:
-        writer = csv.writer(file)
-        writer.writerow(all_records[0].keys())  # Write header
-        for record in all_records:
-            writer.writerow(record.values())
-    print(f"✅ Data berhasil disimpan dalam file {csv_filename}")
-
-    await browser.close()
-
-asyncio.run(scrape_data())
-
-def scrape_data_with_requests():
-    url = "URL_API_YANG_DIGUNAKAN"  # Ganti dengan URL API yang benar
-    headers = {
-        "Authorization": "Bearer TOKEN_API_ANDA"  # Ganti dengan token jika diperlukan
+    params = {
+        "page": 1,
+        "record": 50000,
+        "data": "",
+        "subBranch": "MTc=,MTY=,MjU=,ODE=,NTc=,MTAx,NjE=,NzM=,NzQ=,ODM=,NzU=,NzI=,Mjc=,Mjk=,NjA="
     }
 
     # Request pertama untuk mendapatkan total halaman
-    response = requests.get(url, headers=headers)
-    data = response.json()
+    try:
+        response = fetch_page(base_url, headers, params)
+        if not response:
+            print("Failed to fetch initial data.")
+            return
 
-    # Ambil total halaman
-    total_pages = data["data"]["totalPage"]
-    print(f"Total pages: {total_pages}")
+        data = response
+        print(f"Response content: {json.dumps(data, indent=2)[:500]}...")
 
-    # List untuk menyimpan semua data
-    all_records = []
-
-    # Looping untuk mengambil semua data dari API
-    for page in range(1, total_pages + 1):
-        print(f"Fetching page {page}...")
+        if not data or "data" not in data:
+            print("Invalid response format")
+            return
+            
+        total_pages = data["data"]["totalPage"]
+        print(f"Total pages: {total_pages}")
         
-        params = {"page": page}  # Sesuaikan parameter jika perlu
-        response = requests.get(url, headers=headers, params=params)
+        # List untuk menyimpan semua data
+        all_records = []
+
+        # Looping untuk mengambil semua data dari API
+        for page in range(1, total_pages + 1):
+            print(f"Fetching page {page}...")
+            
+            params["page"] = page  # Sesuaikan parameter jika perlu
+            page_data = fetch_page(base_url, headers, params)
+            
+            if page_data:
+                if "data" in page_data and "dataRec" in page_data["data"]:
+                    all_records.extend(page_data["data"]["dataRec"])
+            else:
+                print(f"Failed to fetch page {page}")
+            
+            time.sleep(1)  # Tambahkan delay untuk mencegah pembatasan API
+
+        # Debugging information
+        print(f"Total records to write: {len(all_records)}")
+        if len(all_records) > 0:
+            print(f"Sample record: {json.dumps(all_records[0], indent=2)}")
+
+        # Filter out records with specific name_process_code values
+        excluded_process_codes = ["Preinvoice", "Cancel PKK", "NOTA NORMAL", "NOTA BATAL", "Billing Claim", "Not to Bill", "Nota"]
+        filtered_records = [record for record in all_records if record.get("name_process_code") not in excluded_process_codes]
+
+        # Filter out records with gt less than 500
+        filtered_records = [record for record in filtered_records if record.get("gt", 0) >= 500]
+
+        # Remove duplicate records based on 'no_pkk'
+        unique_records = {record["no_pkk"]: record for record in filtered_records}.values()
+
+        # Menyimpan ke dalam file CSV
+        csv_filename = "data_kapal.csv"
+
+        with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
+            writer = csv.writer(file)
+
+            # Menulis header
+            writer.writerow(["no_pkk", "no_pkk_inaportnet", "ppkb_code", "vessel_name", "company_name", "gt", "loa", "name_branch", "port_code", "name_process_code", "departure_date"])
+
+            # Menulis data
+            for record in unique_records:
+                try:
+                    writer.writerow([
+                        record.get("no_pkk", ""), 
+                        record.get("no_pkk_inaportnet", ""), 
+                        record.get("ppkb_code", ""), 
+                        record.get("vessel_name", ""), 
+                        record.get("company_name", ""), 
+                        record.get("gt", ""), 
+                        record.get("loa", ""), 
+                        record.get("name_branch", ""), 
+                        record.get("port_code", ""),
+                        record.get("name_process_code", ""),
+                        record.get("departure_date", "")
+                    ])
+                except Exception as e:
+                    print(f"Error writing record: {record}")
+                    print(f"Exception: {e}")
+
+        print(f"Data berhasil disimpan dalam file {csv_filename}")
+
+        # Menyimpan ke dalam file JSON
+        json_filename = "data_kapal.json"
+        with open(json_filename, mode="w", encoding="utf-8") as file:
+            json.dump(list(unique_records), file, ensure_ascii=False, indent=4, default=str)
+        print(f"Data berhasil disimpan dalam file {json_filename}")
         
-        if response.status_code == 200:
-            page_data = response.json()
-            all_records.extend(page_data["data"]["dataRec"])
-        else:
-            print(f"Failed to fetch page {page}, status code: {response.status_code}")
-        
-        time.sleep(1)  # Tambahkan delay untuk mencegah pembatasan API
+    except requests.exceptions.RequestException as e:
+        print(f"Error making request: {e}")
+        return
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON: {e}")
+        return
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return
 
-    # Menyimpan ke dalam file CSV
-    csv_filename = "data_kapal.csv"
-
-    with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
-        writer = csv.writer()
-
-        # Menulis header
-        writer.writerow(["no_pkk", "no_pkk_inaportnet", "ppkb_code", "arrive_date", "departure_date", 
-                         "voyage_in", "voyage_out", "visit_name", "cruise_name", "vessel_name", 
-                         "call_sign", "imo_number", "flag_name", "company_name", "gt", "loa", "dwt", 
-                         "name_branch", "port_code"])
-
-        # Menulis data
-        for record in all_records:
-            writer.writerow([
-                record["no_pkk"], record["no_pkk_inaportnet"], record["ppkb_code"], record["arrive_date"], 
-                record["departure_date"], record["voyage_in"], record["voyage_out"], record["visit_name"], 
-                record["cruise_name"], record["vessel_name"], record["call_sign"], record.get("imo_number", "N/A"), 
-                record["flag_name"], record["company_name"], record["gt"], record["loa"], record["dwt"], 
-                record["name_branch"], record["port_code"]
-            ])
-
-    print(f"Data berhasil disimpan dalam file {csv_filename}")
-
-# Uncomment to run the requests-based scraper
-# scrape_data_with_requests()
+if __name__ == "__main__":
+    scrape_data()

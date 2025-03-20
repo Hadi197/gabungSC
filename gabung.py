@@ -1,58 +1,45 @@
 import pandas as pd
-import subprocess
-
-# Execute inaport.py
-subprocess.run(["python", "/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/inaport.py"])
-
-# Execute scrape.py
-subprocess.run(["python", "/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/scrape.py"])
 
 # File paths
-hasil_scraping_path = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/hasil_scraping.csv'
-inaport_all_path = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/inaport_all.csv'
+data_kapal_path = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/data_kapal.csv'
+spb_path = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/spb.csv'
 output_path = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/gabung.csv'
 
 # Load CSV files
-hasil_scraping_df = pd.read_csv(hasil_scraping_path)
-inaport_all_df = pd.read_csv(inaport_all_path)
+data_kapal_df = pd.read_csv(data_kapal_path)
+spb_df = pd.read_csv(spb_path)
 
 # Print columns to debug
-print("Columns in hasil_scraping_df:", hasil_scraping_df.columns)
-print("Columns in inaport_all_df:", inaport_all_df.columns)
+print("Columns in data_kapal_df:", data_kapal_df.columns)
+print("Columns in spb_df:", spb_df.columns)
 
 # Print the first few rows of each DataFrame to debug
-print("First few rows of hasil_scraping_df:")
-print(hasil_scraping_df.head())
-print("First few rows of inaport_all_df:")
-print(inaport_all_df.head())
-
-# Filter rows where 'gt' is greater than or equal to 500
-filtered_hasil_scraping_df = hasil_scraping_df[hasil_scraping_df['gt'] >= 500]
+print("First few rows of data_kapal_df:")
+print(data_kapal_df.head())
+print("First few rows of spb_df:")
+print(spb_df.head())
 
 # Select only the specified columns that exist in both DataFrames
-columns_to_select_hasil_scraping = [
-    'no_pkk_inaportnet', 'no_pkk', 'arrive_date', 'vessel_name', 
-    'gt', 'loa', 'company_name', 'name_process_code', 'name_branch'
+columns_to_select_data_kapal = [
+    'no_pkk_inaportnet', 'no_pkk', 'vessel_name', 
+    'gt', 'loa', 'company_name', 'name_process_code', 'name_branch','departure_date'
 ]
-columns_to_select_inaport_all = [
-    'nomor_pkk', 'no_spb', 'waktu_spb'
+columns_to_select_spb = [
+    'nomor_pkk', 'nomor_spb'
 ]
 
 # Ensure the columns exist in the DataFrames
-selected_hasil_scraping = filtered_hasil_scraping_df[columns_to_select_hasil_scraping]
-selected_inaport_all = inaport_all_df[columns_to_select_inaport_all]
+selected_data_kapal = data_kapal_df[columns_to_select_data_kapal]
+selected_spb = spb_df[columns_to_select_spb]
 
 # Print the selected data to debug
-print("Selected data from hasil_scraping_df:")
-print(selected_hasil_scraping.head())
-print("Selected data from inaport_all_df:")
-print(selected_inaport_all.head())
+print("Selected data from data_kapal_df:")
+print(selected_data_kapal.head())
+print("Selected data from spb_df:")
+print(selected_spb.head())
 
-# Merge dataframes using 'no_pkk_inaportnet' from hasil_scraping_df and 'nomor_pkk' from inaport_all_df
-merged_df = pd.merge(selected_hasil_scraping, selected_inaport_all, left_on='no_pkk_inaportnet', right_on='nomor_pkk', how='inner')
-
-# Add Periode_SPB column with formatted waktu_spb
-merged_df['Periode_SPB'] = pd.to_datetime(merged_df['waktu_spb']).dt.strftime('%Y-%m')
+# Merge dataframes using 'no_pkk_inaportnet' from data_kapal_df and 'nomor_pkk' from spb_df
+merged_df = pd.merge(selected_data_kapal, selected_spb, left_on='no_pkk_inaportnet', right_on='nomor_pkk', how='inner')
 
 # Print merged DataFrame to debug
 print("Contents of merged_df:")
