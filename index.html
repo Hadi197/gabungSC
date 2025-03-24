@@ -201,7 +201,7 @@
 
                             // Extract period from NO SPB and format as MMYY
                             let noSpb = cells[10];
-                            let periodeSpb = noSpb.split('.')[2].slice(0, 2) + noSpb.split('.')[2].slice(2);
+                            let periodeSpb = noSpb.split('.')[2] ? noSpb.split('.')[2].slice(0, 2) + noSpb.split('.')[2].slice(2) : '';
 
                             tableData.push([
                                 cells[0], // PKK INAPORT
@@ -323,7 +323,13 @@
 
                     // Create PERIODE SPB chart
                     const periodeSpbChartCtx = document.getElementById('waktuSpbChart').getContext('2d');
-                    const sortedPeriodeSpbCounts = Object.entries(periodeSpbCounts).sort((a, b) => a[0] - b[0]);
+                    const sortedPeriodeSpbCounts = Object.entries(periodeSpbCounts).sort((a, b) => {
+                        const aMonth = parseInt(a[0].slice(0, 2));
+                        const aYear = parseInt(a[0].slice(2));
+                        const bMonth = parseInt(b[0].slice(0, 2));
+                        const bYear = parseInt(b[0].slice(2));
+                        return aYear - bYear || aMonth - bMonth;
+                    });
 
                     const periodeSpbChart = new Chart(periodeSpbChartCtx, {
                         type: 'line',
@@ -383,7 +389,13 @@
                                 return counts;
                             }, {});
 
-                        const sortedFilteredPeriodeSpbCounts = Object.entries(filteredPeriodeSpbCounts).sort((a, b) => a[0] - b[0]);
+                        const sortedFilteredPeriodeSpbCounts = Object.entries(filteredPeriodeSpbCounts).sort((a, b) => {
+                            const aMonth = parseInt(a[0].slice(0, 2));
+                            const aYear = parseInt(a[0].slice(2));
+                            const bMonth = parseInt(b[0].slice(0, 2));
+                            const bYear = parseInt(b[0].slice(2));
+                            return aYear - bYear || aMonth - bMonth;
+                        });
 
                         periodeSpbChart.data.labels = sortedFilteredPeriodeSpbCounts.map(entry => entry[0]);
                         periodeSpbChart.data.datasets[0].data = sortedFilteredPeriodeSpbCounts.map(entry => entry[1]);
