@@ -41,7 +41,7 @@ def scrape_data():
         "page": 1,
         "record": 25000,
         "data": "",
-        "start_date": "2025-01-01",
+        "start_date": "2024-01-01",
         "end_date": "2025-03-31",
         "is_success": ""
     }
