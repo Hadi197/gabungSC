@@ -1,5 +1,889 @@
 [
     {
+        "nomor_pkk": "PKK.DN.IDKOE.2503.000130",
+        "nomor_spb": "SPB.IDKOE.0325.0000130"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKBU.2503.000531",
+        "nomor_spb": "SPB.IDKBU.0325.0000536"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000776",
+        "nomor_spb": "SPB.IDSUB.0325.0000781"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000645",
+        "nomor_spb": "SPB.IDSUB.0325.0000780"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKBU.2503.000380",
+        "nomor_spb": "SPB.IDKBU.0325.0000534"
+    },
+    {
+        "nomor_pkk": "PKK.LN.IDSRG.2503.000133",
+        "nomor_spb": "SPB.IDSRG.0325.0000229"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKUM.2503.000118",
+        "nomor_spb": "SPB.IDKUM.0325.0000147"
+    },
+    {
+        "nomor_pkk": "PKK.LN.IDSUB.2503.000722",
+        "nomor_spb": "SPB.IDSUB.0325.0000779"
+    },
+    {
+        "nomor_pkk": "PKK.LN.IDSUB.2503.000743",
+        "nomor_spb": "SPB.IDSUB.0325.0000778"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKBU.2503.000530",
+        "nomor_spb": "SPB.IDKBU.0325.0000535"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKOE.2503.000117",
+        "nomor_spb": "SPB.IDKOE.0325.0000129"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKBU.2503.000492",
+        "nomor_spb": "SPB.IDKBU.0325.0000533"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSRG.2503.000198",
+        "nomor_spb": "SPB.IDSRG.0325.0000230"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000783",
+        "nomor_spb": "SPB.IDSUB.0325.0000777"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSRG.2503.000200",
+        "nomor_spb": "SPB.IDSRG.0325.0000228"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002483",
+        "nomor_spb": "SPB.IDBDJ.0325.0002528"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDLBR.2503.000135",
+        "nomor_spb": "SPB.IDLBR.0325.0000130"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKOE.2503.000106",
+        "nomor_spb": "SPB.IDKOE.0325.0000128"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKUM.2503.000132",
+        "nomor_spb": "SPB.IDKUM.0325.0000146"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDLBR.2503.000130",
+        "nomor_spb": "SPB.IDLBR.0325.0000129"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKUM.2503.000132",
+        "nomor_spb": "IDKUM-SPK.2503.001100\t"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000521",
+        "nomor_spb": "SPB.IDSUB.0325.0000775"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBJU.2503.000084",
+        "nomor_spb": "SPB.IDBJU.0325.0000094"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSTU.2503.000377",
+        "nomor_spb": "SPB.IDSTU.0325.0000511"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002332",
+        "nomor_spb": "SPB.IDBDJ.0325.0002527"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDGRE.2503.000315",
+        "nomor_spb": "SPB.IDGRE.0325.0000601"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000782",
+        "nomor_spb": "SPB.IDSUB.0325.0000774"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000774",
+        "nomor_spb": "SPB.IDSUB.0325.0000773"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSTU.2503.000408",
+        "nomor_spb": "SPB.IDSTU.0325.0000510"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSTU.2503.000407",
+        "nomor_spb": "SPB.IDSTU.0325.0000509"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSTU.2503.000439",
+        "nomor_spb": "SPB.IDSTU.0325.0000508"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDGRE.2503.000092",
+        "nomor_spb": "SPB.IDGRE.0325.0000598"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDGRE.2503.000089",
+        "nomor_spb": "SPB.IDGRE.0325.0000597"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKBU.2503.000520",
+        "nomor_spb": "SPB.IDKBU.0325.0000530"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDGRE.2503.000205",
+        "nomor_spb": "SPB.IDGRE.0325.0000596"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBJU.2503.000083",
+        "nomor_spb": "SPB.IDBJU.0325.0000092"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKOE.2503.000103",
+        "nomor_spb": "SPB.IDKOE.0325.0000127"
+    },
+    {
+        "nomor_pkk": "PKK.LN.IDBDJ.2503.002269",
+        "nomor_spb": "SPB.IDBDJ.0325.0002525"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSRG.2503.000220",
+        "nomor_spb": "SPB.IDSRG.0325.0000227"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSTU.2503.000440",
+        "nomor_spb": "SPB.IDSTU.0325.0000507"
+    },
+    {
+        "nomor_pkk": "PKK.LN.IDGRE.2503.000408",
+        "nomor_spb": "SPB.IDGRE.0325.0000599"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBJU.2503.000088",
+        "nomor_spb": "SPB.IDBJU.0325.0000093"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSTU.2503.000424",
+        "nomor_spb": "SPB.IDSTU.0325.0000504"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSTU.2503.000423",
+        "nomor_spb": "SPB.IDSTU.0325.0000503"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSMQ.2503.000283",
+        "nomor_spb": "SPB.IDSMQ.0325.0000321"
+    },
+    {
+        "nomor_pkk": "PKK.LN.IDBDJ.2503.002274",
+        "nomor_spb": "SPB.IDBDJ.0325.0002526"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSMQ.2503.000160",
+        "nomor_spb": "SPB.IDSMQ.0325.0000319"
+    },
+    {
+        "nomor_pkk": "PKK.LN.IDSUB.2503.000700",
+        "nomor_spb": "SPB.IDSUB.0325.0000770"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000640",
+        "nomor_spb": "SPB.IDSUB.0325.0000772"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSMQ.2503.000161",
+        "nomor_spb": "SPB.IDSMQ.0325.0000320"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000607",
+        "nomor_spb": "SPB.IDSUB.0325.0000771"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDGRE.2503.000488",
+        "nomor_spb": "SPB.IDGRE.0325.0000595"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDGRE.2503.000487",
+        "nomor_spb": "SPB.IDGRE.0325.0000594"
+    },
+    {
+        "nomor_pkk": "PKK.LN.IDGRE.2503.000400",
+        "nomor_spb": "SPB.IDGRE.0325.0000593"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000771",
+        "nomor_spb": "SPB.IDSUB.0325.0000769"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000748",
+        "nomor_spb": "SPB.IDSUB.0325.0000768"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000243",
+        "nomor_spb": "SPB.IDSUB.0325.0000767"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002321",
+        "nomor_spb": "SPB.IDBDJ.0325.0002522"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001985",
+        "nomor_spb": "SPB.IDBDJ.0325.0002520"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001986",
+        "nomor_spb": "SPB.IDBDJ.0325.0002519"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2501.000385",
+        "nomor_spb": "SPB.IDSUB.0325.0000764"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002350",
+        "nomor_spb": "SPB.IDBDJ.0325.0002518"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002349",
+        "nomor_spb": "SPB.IDBDJ.0325.0002517"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002278",
+        "nomor_spb": "SPB.IDBDJ.0325.0002516"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002162",
+        "nomor_spb": "SPB.IDBDJ.0325.0002515"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSTU.2503.000419",
+        "nomor_spb": "SPB.IDSTU.0325.0000502"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSTU.2503.000420",
+        "nomor_spb": "SPB.IDSTU.0325.0000501"
+    },
+    {
+        "nomor_pkk": "PKK.LN.IDSTU.2503.000278",
+        "nomor_spb": "SPB.IDSTU.0325.0000500"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDCXP.2503.000025",
+        "nomor_spb": "SPB.IDCXP.0325.0000072"
+    },
+    {
+        "nomor_pkk": "PKK.LN.IDSUB.2503.000679",
+        "nomor_spb": "SPB.IDSUB.0325.0000766"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000744",
+        "nomor_spb": "SPB.IDSUB.0325.0000765"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002361",
+        "nomor_spb": "SPB.IDBDJ.0325.0002521"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002328",
+        "nomor_spb": "SPB.IDBDJ.0325.0002512"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002359",
+        "nomor_spb": "SPB.IDBDJ.0325.0002511"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002277",
+        "nomor_spb": "SPB.IDBDJ.0325.0002514"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002330",
+        "nomor_spb": "SPB.IDBDJ.0325.0002513"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002318",
+        "nomor_spb": "SPB.IDBDJ.0325.0002510"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSRG.2503.000201",
+        "nomor_spb": "SPB.IDSRG.0325.0000226"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002331",
+        "nomor_spb": "SPB.IDBDJ.0325.0002503"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002201",
+        "nomor_spb": "SPB.IDBDJ.0325.0002502"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002161",
+        "nomor_spb": "SPB.IDBDJ.0325.0002509"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002231",
+        "nomor_spb": "SPB.IDBDJ.0325.0002508"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002230",
+        "nomor_spb": "SPB.IDBDJ.0325.0002507"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002482",
+        "nomor_spb": "SPB.IDBDJ.0325.0002506"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002479",
+        "nomor_spb": "SPB.IDBDJ.0325.0002505"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001773",
+        "nomor_spb": "SPB.IDBDJ.0325.0002501"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001774",
+        "nomor_spb": "SPB.IDBDJ.0325.0002500"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002124",
+        "nomor_spb": "SPB.IDBDJ.0325.0002499"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDGRE.2503.000433",
+        "nomor_spb": "SPB.IDGRE.0325.0000592"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001358",
+        "nomor_spb": "SPB.IDBDJ.0325.0002493"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001359",
+        "nomor_spb": "SPB.IDBDJ.0325.0002492"
+    },
+    {
+        "nomor_pkk": "PKK.LN.IDGRE.2503.000479",
+        "nomor_spb": "SPB.IDGRE.0325.0000591"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDGRE.2503.000087",
+        "nomor_spb": "SPB.IDGRE.0325.0000590"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001101",
+        "nomor_spb": "SPB.IDBDJ.0325.0002490"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000714",
+        "nomor_spb": "SPB.IDSUB.0325.0000760"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002366",
+        "nomor_spb": "SPB.IDBDJ.0325.0002489"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002097",
+        "nomor_spb": "SPB.IDBDJ.0325.0002488"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002096",
+        "nomor_spb": "SPB.IDBDJ.0325.0002487"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.000789",
+        "nomor_spb": "SPB.IDBDJ.0325.0002486"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001102",
+        "nomor_spb": "SPB.IDBDJ.0325.0002491"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKBU.2503.000516",
+        "nomor_spb": "SPB.IDKBU.0325.0000524"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000610",
+        "nomor_spb": "SPB.IDSUB.0325.0000761"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBOA.2503.001688",
+        "nomor_spb": "SPB.IDBOA.0325.0001922"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBOA.2503.001687",
+        "nomor_spb": "SPB.IDBOA.0325.0001921"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2502.000897",
+        "nomor_spb": "SPB.IDSUB.0325.0000759"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002413",
+        "nomor_spb": "SPB.IDBDJ.0325.0002482"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002033",
+        "nomor_spb": "SPB.IDBDJ.0325.0002485"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002034",
+        "nomor_spb": "SPB.IDBDJ.0325.0002484"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002414",
+        "nomor_spb": "SPB.IDBDJ.0325.0002483"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.000051",
+        "nomor_spb": "SPB.IDBDJ.0325.0002481"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2501.000916",
+        "nomor_spb": "SPB.IDBDJ.0325.0002480"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001248",
+        "nomor_spb": "SPB.IDBDJ.0325.0002479"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001247",
+        "nomor_spb": "SPB.IDBDJ.0325.0002478"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKOE.2503.000123",
+        "nomor_spb": "SPB.IDKOE.0325.0000126"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKOE.2503.000118",
+        "nomor_spb": "SPB.IDKOE.0325.0000125"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002258",
+        "nomor_spb": "SPB.IDBDJ.0325.0002477"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000699",
+        "nomor_spb": "SPB.IDSUB.0325.0000758"
+    },
+    {
+        "nomor_pkk": "PKK.LN.IDGRE.2503.000485",
+        "nomor_spb": "SPB.IDGRE.0325.0000589"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2502.000700",
+        "nomor_spb": "SPB.IDBDJ.0325.0002469"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000155",
+        "nomor_spb": "SPB.IDSUB.0325.0000756"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000775",
+        "nomor_spb": "SPB.IDSUB.0325.0000757"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002445",
+        "nomor_spb": "SPB.IDBDJ.0325.0002473"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002039",
+        "nomor_spb": "SPB.IDBDJ.0325.0002471"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002040",
+        "nomor_spb": "SPB.IDBDJ.0325.0002470"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001694",
+        "nomor_spb": "SPB.IDBDJ.0325.0002468"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002013",
+        "nomor_spb": "SPB.IDBDJ.0325.0002466"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKOE.2503.000107",
+        "nomor_spb": "SPB.IDKOE.0325.0000124"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDGRE.2503.000319",
+        "nomor_spb": "SPB.IDGRE.0325.0000588"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000154",
+        "nomor_spb": "SPB.IDSUB.0325.0000755"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000723",
+        "nomor_spb": "SPB.IDSUB.0325.0000754"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDGRE.2503.000318",
+        "nomor_spb": "SPB.IDGRE.0325.0000587"
+    },
+    {
+        "nomor_pkk": "PKK.LN.IDSUB.2503.000721",
+        "nomor_spb": "SPB.IDSUB.0325.0000753"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000182",
+        "nomor_spb": "SPB.IDSUB.0325.0000752"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000649",
+        "nomor_spb": "SPB.IDSUB.0325.0000751"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000729",
+        "nomor_spb": "SPB.IDSUB.0325.0000750"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKBU.2503.000484",
+        "nomor_spb": "SPB.IDKBU.0325.0000523"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSRG.2503.000186",
+        "nomor_spb": "SPB.IDSRG.0325.0000225"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKUM.2503.000066",
+        "nomor_spb": "SPB.IDKUM.0325.0000145"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKUM.2503.000131",
+        "nomor_spb": "SPB.IDKUM.0325.0000143"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDGRE.2503.000239",
+        "nomor_spb": "SPB.IDGRE.0325.0000586"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDGRE.2503.000403",
+        "nomor_spb": "SPB.IDGRE.0325.0000585"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000559",
+        "nomor_spb": "SPB.IDSUB.0325.0000749"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKBU.2503.000485",
+        "nomor_spb": "SPB.IDKBU.0325.0000522"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000563",
+        "nomor_spb": "SPB.IDSUB.0325.0000748"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000562",
+        "nomor_spb": "SPB.IDSUB.0325.0000747"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKUM.2503.000065",
+        "nomor_spb": "SPB.IDKUM.0325.0000144"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSMQ.2503.000098",
+        "nomor_spb": "SPB.IDSMQ.0325.0000318"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.000966",
+        "nomor_spb": "SPB.IDBDJ.0325.0002465"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.000965",
+        "nomor_spb": "SPB.IDBDJ.0325.0002464"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002411",
+        "nomor_spb": "SPB.IDBDJ.0325.0002461"
+    },
+    {
+        "nomor_pkk": "PKK.LN.IDSRG.2503.000205",
+        "nomor_spb": "SPB.IDSRG.0325.0000224"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002410",
+        "nomor_spb": "SPB.IDBDJ.0325.0002459"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSRG.2503.000141",
+        "nomor_spb": "SPB.IDSRG.0325.0000223"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002291",
+        "nomor_spb": "SPB.IDBDJ.0325.0002455"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.000314",
+        "nomor_spb": "SPB.IDBDJ.0325.0002453"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002249",
+        "nomor_spb": "SPB.IDBDJ.0325.0002450"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002056",
+        "nomor_spb": "SPB.IDBDJ.0325.0002448"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002055",
+        "nomor_spb": "SPB.IDBDJ.0325.0002447"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002106",
+        "nomor_spb": "SPB.IDBDJ.0325.0002445"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002398",
+        "nomor_spb": "SPB.IDBDJ.0325.0002444"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.000786",
+        "nomor_spb": "SPB.IDBDJ.0325.0002440"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.000785",
+        "nomor_spb": "SPB.IDBDJ.0325.0002439"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSRG.2503.000140",
+        "nomor_spb": "SPB.IDSRG.0325.0000222"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002292",
+        "nomor_spb": "SPB.IDBDJ.0325.0002456"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.000315",
+        "nomor_spb": "SPB.IDBDJ.0325.0002454"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001015",
+        "nomor_spb": "SPB.IDBDJ.0325.0002452"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001014",
+        "nomor_spb": "SPB.IDBDJ.0325.0002451"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002247",
+        "nomor_spb": "SPB.IDBDJ.0325.0002449"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002107",
+        "nomor_spb": "SPB.IDBDJ.0325.0002446"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002397",
+        "nomor_spb": "SPB.IDBDJ.0325.0002443"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001283",
+        "nomor_spb": "SPB.IDBDJ.0325.0002442"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001280",
+        "nomor_spb": "SPB.IDBDJ.0325.0002441"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSTU.2503.000428",
+        "nomor_spb": "SPB.IDSTU.0325.0000496"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2502.002591",
+        "nomor_spb": "SPB.IDBDJ.0325.0002438"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2502.002590",
+        "nomor_spb": "SPB.IDBDJ.0325.0002437"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDGRE.2503.000278",
+        "nomor_spb": "SPB.IDGRE.0325.0000584"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDGRE.2503.000277",
+        "nomor_spb": "SPB.IDGRE.0325.0000583"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002059",
+        "nomor_spb": "SPB.IDBDJ.0325.0002432"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSMQ.2503.000097",
+        "nomor_spb": "SPB.IDSMQ.0325.0000315"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSMQ.2503.000227",
+        "nomor_spb": "SPB.IDSMQ.0325.0000314"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSTU.2503.000429",
+        "nomor_spb": "SPB.IDSTU.0325.0000495"
+    },
+    {
+        "nomor_pkk": "PKK.LN.IDSRG.2503.000185",
+        "nomor_spb": "SPB.IDSRG.0325.0000221"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSMQ.2503.000131",
+        "nomor_spb": "SPB.IDSMQ.0325.0000317"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSMQ.2503.000132",
+        "nomor_spb": "SPB.IDSMQ.0325.0000316"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDGRE.2503.000310",
+        "nomor_spb": "SPB.IDGRE.0325.0000582"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBOA.2503.001838",
+        "nomor_spb": "SPB.IDBOA.0325.0001911"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBOA.2503.001876",
+        "nomor_spb": "SPB.IDBOA.0325.0001910"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSMQ.2503.000226",
+        "nomor_spb": "SPB.IDSMQ.0325.0000313"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001131",
+        "nomor_spb": "SPB.IDBDJ.0325.0002431"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001125",
+        "nomor_spb": "SPB.IDBDJ.0325.0002430"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBOA.2503.000121",
+        "nomor_spb": "SPB.IDBOA.0325.0001909"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001098",
+        "nomor_spb": "SPB.IDBDJ.0325.0002428"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002174",
+        "nomor_spb": "SPB.IDBDJ.0325.0002427"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001688",
+        "nomor_spb": "SPB.IDBDJ.0325.0002425"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001690",
+        "nomor_spb": "SPB.IDBDJ.0325.0002426"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002173",
+        "nomor_spb": "SPB.IDBDJ.0325.0002424"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKBU.2503.000399",
+        "nomor_spb": "SPB.IDKBU.0325.0000521"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000315",
+        "nomor_spb": "SPB.IDSUB.0325.0000746"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDGRE.2503.000308",
+        "nomor_spb": "SPB.IDGRE.0325.0000580"
+    },
+    {
+        "nomor_pkk": "PKK.LN.IDGRE.2503.000521",
+        "nomor_spb": "SPB.IDGRE.0325.0000579"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSMQ.2503.000204",
+        "nomor_spb": "SPB.IDSMQ.0325.0000306"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001100",
+        "nomor_spb": "SPB.IDBDJ.0325.0002429"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSMQ.2503.000133",
+        "nomor_spb": "SPB.IDSMQ.0325.0000312"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKBU.2503.000398",
+        "nomor_spb": "SPB.IDKBU.0325.0000520"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDGRE.2503.000107",
+        "nomor_spb": "SPB.IDGRE.0325.0000581"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000694",
+        "nomor_spb": "SPB.IDSUB.0325.0000745"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSMQ.2503.000205",
+        "nomor_spb": "SPB.IDSMQ.0325.0000307"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSUB.2503.000704",
+        "nomor_spb": "SPB.IDSUB.0325.0000744"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSTU.2503.000352",
+        "nomor_spb": "SPB.IDSTU.0325.0000489"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001907",
+        "nomor_spb": "SPB.IDBDJ.0325.0002423"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.001908",
+        "nomor_spb": "SPB.IDBDJ.0325.0002422"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSTU.2503.000350",
+        "nomor_spb": "SPB.IDSTU.0325.0000488"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKBU.2503.000521",
+        "nomor_spb": "SPB.IDKBU.0325.0000519"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSTU.2503.000351",
+        "nomor_spb": "SPB.IDSTU.0325.0000487"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDKBU.2503.000522",
+        "nomor_spb": "SPB.IDKBU.0325.0000518"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSTU.2503.000264",
+        "nomor_spb": "SPB.IDSTU.0325.0000485"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDSTU.2503.000265",
+        "nomor_spb": "SPB.IDSTU.0325.0000484"
+    },
+    {
+        "nomor_pkk": "PKK.LN.IDSUB.2503.000707",
+        "nomor_spb": "SPB.IDSUB.0325.0000743"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002316",
+        "nomor_spb": "SPB.IDBDJ.0325.0002416"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002089",
+        "nomor_spb": "SPB.IDBDJ.0325.0002415"
+    },
+    {
+        "nomor_pkk": "PKK.DN.IDBDJ.2503.002319",
+        "nomor_spb": "SPB.IDBDJ.0325.0002417"
+    },
+    {
         "nomor_pkk": "PKK.DN.IDBDJ.2503.002282",
         "nomor_spb": "SPB.IDBDJ.0325.0002412"
     },
@@ -1456,14 +2340,6 @@
         "nomor_spb": "SPB.IDBDJ.0325.0002235"
     },
     {
-        "nomor_pkk": "PKK.DN.IDBDJ.2503.002097",
-        "nomor_spb": "SPB.IDBDJ.0325.0002233"
-    },
-    {
-        "nomor_pkk": "PKK.DN.IDBDJ.2503.002096",
-        "nomor_spb": "SPB.IDBDJ.0325.0002232"
-    },
-    {
         "nomor_pkk": "PKK.DN.IDBDJ.2503.002053",
         "nomor_spb": "SPB.IDBDJ.0325.0002231"
     },
@@ -2620,10 +3496,6 @@
         "nomor_spb": "SPB.IDGRE.0325.0000501"
     },
     {
-        "nomor_pkk": "PKK.DN.IDBDJ.2503.001358",
-        "nomor_spb": "SPB.IDBDJ.0325.0002082"
-    },
-    {
         "nomor_pkk": "PKK.DN.IDBDJ.2503.001844",
         "nomor_spb": "SPB.IDBDJ.0325.0002075"
     },
@@ -2634,10 +3506,6 @@
     {
         "nomor_pkk": "PKK.DN.IDBDJ.2503.001832",
         "nomor_spb": "SPB.IDBDJ.0325.0002072"
-    },
-    {
-        "nomor_pkk": "PKK.DN.IDBDJ.2503.001359",
-        "nomor_spb": "SPB.IDBDJ.0325.0002081"
     },
     {
         "nomor_pkk": "PKK.DN.IDBDJ.2410.003829",

@@ -3,6 +3,7 @@ import requests
 import csv
 import time
 import brotli  # Add this import
+import pandas as pd
 
 def fetch_page(base_url, headers, params, retries=5):
     for i in range(retries):
@@ -102,36 +103,17 @@ def scrape_data():
         # Remove duplicate records based on 'no_pkk'
         unique_records = {record["no_pkk"]: record for record in filtered_records}.values()
 
-        # Menyimpan ke dalam file CSV
-        csv_filename = "data_kapal.csv"
+        # Convert data to DataFrame
+        df = pd.DataFrame(unique_records)
 
-        with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
-            writer = csv.writer(file)
+        # Filter out rows where "process_code" is "0"
+        filtered_df = df[df['process_code'] != '0']
 
-            # Menulis header
-            writer.writerow(["no_pkk", "no_pkk_inaportnet", "ppkb_code", "vessel_name", "company_name", "gt", "loa", "name_branch", "port_code", "name_process_code", "departure_date"])
+        # Save the filtered data to CSV
+        output_path = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/data_kapal.csv'
+        filtered_df.to_csv(output_path, index=False)
 
-            # Menulis data
-            for record in unique_records:
-                try:
-                    writer.writerow([
-                        record.get("no_pkk", ""), 
-                        record.get("no_pkk_inaportnet", ""), 
-                        record.get("ppkb_code", ""), 
-                        record.get("vessel_name", ""), 
-                        record.get("company_name", ""), 
-                        record.get("gt", ""), 
-                        record.get("loa", ""), 
-                        record.get("name_branch", ""), 
-                        record.get("port_code", ""),
-                        record.get("name_process_code", ""),
-                        record.get("departure_date", "")
-                    ])
-                except Exception as e:
-                    print(f"Error writing record: {record}")
-                    print(f"Exception: {e}")
-
-        print(f"Data berhasil disimpan dalam file {csv_filename}")
+        print(f"✅ Data berhasil diambil dan disimpan dalam file {output_path}")
 
         # Menyimpan ke dalam file JSON
         json_filename = "data_kapal.json"

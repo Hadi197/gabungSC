@@ -1,9 +1,16 @@
 import pandas as pd
+import subprocess
 
 # File paths
 data_kapal_path = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/data_kapal.csv'
 spb_path = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/spb.csv'
 output_path = '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/gabung.csv'
+
+# Execute scrape.py
+subprocess.run(['python3', '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/scrape.py'])
+
+# Execute spbphi.py
+subprocess.run(['python3', '/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/spbphi.py'])
 
 # Load CSV files
 data_kapal_df = pd.read_csv(data_kapal_path)
