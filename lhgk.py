@@ -114,12 +114,6 @@ def scrape_data():
         else:
             print("No data to save.")
 
-        # Save to JSON
-        json_filename = "/Users/hadipurwana/Library/CloudStorage/GoogleDrive-pjmdataapps@gmail.com/My Drive/WEB/GabungSC/lhgk.json"
-        with open(json_filename, mode="w", encoding="utf-8") as file:
-            json.dump(all_records, file, ensure_ascii=False, indent=4, default=str)
-        print(f"Data successfully saved to {json_filename}")
-
     except requests.exceptions.RequestException as e:
         print(f"Error making request: {e}")
         return

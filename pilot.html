@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilot Table</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .container {
+            max-width: 95%;
+        }
+        .header {
+            margin-bottom: 30px;
+        }
+        .table-responsive {
+            margin-top: 20px;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        td.details-control {
+            background: url('https://datatables.net/examples/resources/details_open.png') no-repeat center center;
+            cursor: pointer;
+        }
+        tr.shown td.details-control {
+            background: url('https://datatables.net/examples/resources/details_close.png') no-repeat center center;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .card {
+            text-align: center;
+            background-color: #f8f9fa;
+            border: 1px solid #007bff;
+            width: 200px;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+        }
+        .card-title {
+            font-size: 1rem;
+            color: #007bff;
+        }
+        .card-text {
+            font-size: 1.2rem;
+            color: #343a40;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top bar copied from index.html -->
+    <div class="topbar" style="width: 100%; background-color: #343a40; color: white; padding: 10px 20px; position: fixed; top: 0; left: 0; z-index: 1000;">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <img src="https://via.placeholder.com/40" class="rounded-circle" alt="User Image">
+                <span>PJMW3</span>
+                <span class="ml-2"></span>
+            </div>
+            <div>
+                <a href="index.html" style="color: white; text-decoration: none; margin-right: 20px;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/13079/13079943.png" alt="Outstanding Icon" style="width: 20px; height: 20px; margin-right: 5px;">
+                    Outstanding
+                </a>
+                <a href="pilot.html" style="color: white; text-decoration: none; margin-right: 20px;">
+                    <img src="https://st4.depositphotos.com/18690434/20926/v/450/depositphotos_209265864-stock-illustration-captain-icon-vector-isolated-white.jpg" alt="Pilot Icon" style="width: 20px; height: 20px; margin-right: 5px;">
+                    Pilot
+                </a>
+                <!-- Remove Data Table menu item -->
+            </div>
+        </div>
+    </div>
+    <div class="content" style="margin-top: 60px; padding: 20px;">
+        <div class="container">
+            <div class="header">
+                <h2>Pilot</h2>
+            </div>
+            <div class="card-container" id="cardContainer">
+                <!-- Cards will be generated here -->
+            </div>
+            <div class="table-responsive">
+                <table id="pilotTable" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Nama Pandu</th>
+                            <th>Pelabuhan</th>
+                            <th>average wt</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function format(d) {
+                // Sort the data by wt in descending order
+                const sortedData = d.nm_kapal.map((kapal, index) => ({
+                    nm_kapal: kapal,
+                    wt: d.wt[index],
+                    status_nota: d.status_nota[index],
+                    pilot_deploy: d.pilot_deploy[index],
+                    pilot_deploy_by: d.pilot_deploy_by[index],
+                    penetapan: `${d.tgl_tiba[index]} ${d.jam_tiba[index]}`,
+                    mulai_pelaksanaan: d.mulai_pelaksanaan[index]
+                })).sort((a, b) => b.wt - a.wt);
+
+                let table = '<table class="table table-bordered" style="margin-left:50px;">' +
+                    '<thead>' +
+                        '<tr>' +
+                            '<th>nm_kapal</th>' +
+                            '<th>wt</th>' +
+                            '<th>status_nota</th>' +
+                            '<th>pilot_deploy</th>' +
+                            '<th>pilot_deploy_by</th>' +
+                            '<th>Penetapan</th>' +
+                            '<th>mulai_pelaksanaan</th>' +
+                        '</tr>' +
+                    '</thead>' +
+                    '<tbody>';
+                
+                sortedData.forEach(row => {
+                    table += '<tr>' +
+                        '<td>' + row.nm_kapal + '</td>' +
+                        '<td>' + row.wt + '</td>' +
+                        '<td>' + row.status_nota + '</td>' +
+                        '<td>' + row.pilot_deploy + '</td>' +
+                        '<td>' + row.pilot_deploy_by + '</td>' +
+                        '<td>' + row.penetapan + '</td>' +
+                        '<td>' + row.mulai_pelaksanaan + '</td>' +
+                    '</tr>';
+                });
+
+                table += '</tbody></table>';
+                return table;
+            }
+
+            // Load CSV data
+            $.ajax({
+                url: 'lhgk.csv', // Ensure this path is correct
+                dataType: 'text',
+                success: function(data) {
+                    Papa.parse(data, {
+                        header: true,
+                        dynamicTyping: true,
+                        complete: function(results) {
+                            const data = results.data;
+                            const tableBody = $('#pilotTable tbody');
+                            const uniqueNames = new Set();
+                            const nameToWeights = {};
+                            const nameToData = {};
+                            const branchCounts = {};
+                            const branchWeights = {};
+                            const branchData = [];
+
+                            data.forEach(row => {
+                                if (row.nm_pers_pandu) {
+                                    if (!nameToWeights[row.nm_pers_pandu]) {
+                                        nameToWeights[row.nm_pers_pandu] = [];
+                                    }
+                                    nameToWeights[row.nm_pers_pandu].push(row.wt);
+
+                                    if (!nameToData[row.nm_pers_pandu]) {
+                                        nameToData[row.nm_pers_pandu] = {
+                                            nm_branch: row.nm_branch,
+                                            nm_kapal: [],
+                                            wt: [],
+                                            status_nota: [],
+                                            pilot_deploy: [],
+                                            pilot_deploy_by: [],
+                                            tgl_tiba: [],
+                                            jam_tiba: [],
+                                            mulai_pelaksanaan: []
+                                        };
+                                    }
+                                    nameToData[row.nm_pers_pandu].nm_kapal.push(row.nm_kapal);
+                                    nameToData[row.nm_pers_pandu].wt.push(row.wt);
+                                    nameToData[row.nm_pers_pandu].status_nota.push(row.status_nota);
+                                    nameToData[row.nm_pers_pandu].pilot_deploy.push(row.pilot_deploy);
+                                    nameToData[row.nm_pers_pandu].pilot_deploy_by.push(row.pilot_deploy_by);
+                                    nameToData[row.nm_pers_pandu].tgl_tiba.push(row.tgl_tiba);
+                                    nameToData[row.nm_pers_pandu].jam_tiba.push(row.jam_tiba);
+                                    nameToData[row.nm_pers_pandu].mulai_pelaksanaan.push(row.mulai_pelaksanaan);
+
+                                    // Count branches and sum weights
+                                    const branch = row.nm_branch;
+                                    if (branchCounts[branch]) {
+                                        branchCounts[branch]++;
+                                        branchWeights[branch] += row.wt;
+                                    } else {
+                                        branchCounts[branch] = 1;
+                                        branchWeights[branch] = row.wt;
+                                    }
+                                }
+                            });
+
+                            // Generate cards
+                            const cardContainer = $('#cardContainer');
+                            Object.keys(branchCounts).forEach(branch => {
+                                const averageWt = (branchWeights[branch] / branchCounts[branch]).toFixed(2);
+                                branchData.push({ branch, count: branchCounts[branch], averageWt });
+                            });
+
+                            // Sort branchData by averageWt in descending order
+                            branchData.sort((a, b) => b.averageWt - a.averageWt);
+
+                            branchData.forEach(branchInfo => {
+                                const card = $('<div class="card"></div>');
+                                const cardTitle = $('<div class="card-title"></div>').text(branchInfo.branch);
+                                const cardText = $('<div class="card-text"></div>').text(`Count: ${branchInfo.count} | Avg WT: ${branchInfo.averageWt}`);
+                                card.append(cardTitle);
+                                card.append(cardText);
+                                cardContainer.append(card);
+                            });
+
+                            Object.keys(nameToWeights).forEach(name => {
+                                if (!uniqueNames.has(name)) {
+                                    uniqueNames.add(name);
+                                    const weights = nameToWeights[name];
+                                    const averageWt = weights.reduce((a, b) => a + b, 0) / weights.length;
+                                    const tr = $('<tr></tr>');
+                                    const tdControl = $('<td class="details-control"></td>');
+                                    const tdName = $('<td></td>').text(name);
+                                    const tdBranch = $('<td></td>').text(nameToData[name].nm_branch);
+                                    const tdAverageWt = $('<td></td>').text(averageWt.toFixed(2));
+                                    tr.append(tdControl);
+                                    tr.append(tdName);
+                                    tr.append(tdBranch);
+                                    tr.append(tdAverageWt);
+                                    tableBody.append(tr);
+                                }
+                            });
+
+                            // Initialize DataTable with sorting by average wt in descending order
+                            const table = $('#pilotTable').DataTable({
+                                order: [[3, 'desc']] // Sort by the 4th column (average wt) in descending order
+                            });
+
+                            // Add event listener for opening and closing details
+                            $('#pilotTable tbody').on('click', 'td.details-control', function () {
+                                const tr = $(this).closest('tr');
+                                const row = table.row(tr);
+
+                                if (row.child.isShown()) {
+                                    // This row is already open - close it
+                                    row.child.hide();
+                                    tr.removeClass('shown');
+                                } else {
+                                    // Open this row
+                                    const rowData = nameToData[row.data()[1]]; // Get the original data for the row
+                                    row.child(format(rowData)).show();
+                                    tr.addClass('shown');
+                                }
+                            });
+                        },
+                        error: function(error) {
+                            console.error('Failed to parse CSV data:', error);
+                        }
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Failed to load CSV data:', error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
